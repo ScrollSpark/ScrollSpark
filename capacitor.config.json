@@ -1,0 +1,8 @@
+{
+  "appId": "com.scrollspark.app",
+  "appName": "ScrollSpark",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

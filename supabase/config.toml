@@ -1,0 +1,52 @@
+# Linked project: apply changes with:
+#   npx supabase config push
+#
+# This app is Capacitor (no public marketing site). Auth “Site URL” is not a live website — it must be a URL
+# Supabase accepts for redirects. Use https://localhost (Capacitor WebView origin), not http://127.0.0.1:3000,
+# so confirmation links don’t embed a fake dev URL. Add your dev machine URL to additional_redirect_urls if needed.
+#
+# Email template (subject + HTML): lives in this repo under supabase/templates/.
+#
+# ── Sending FROM scrollsparkapp@gmail.com (hosted Supabase) ─────────────────
+# Dashboard → Project Settings → Authentication → SMTP Settings → Enable custom SMTP
+#   Host: smtp.gmail.com
+#   Port: 465 (SSL) or 587 (recommended if your dashboard shows TLS)
+#   Username: scrollsparkapp@gmail.com
+#   Password: Google “App password” (Google Account → Security → 2-Step Verification → App passwords)
+#   Sender email: scrollsparkapp@gmail.com
+#   Sender name: ScrollSpark
+#
+# ── Local supabase start (optional real sends) ───────────────────────────────
+# Uncomment [auth.email.smtp] below, set SUPABASE_AUTH_SMTP_PASS in .env, then:
+#   npx supabase stop && npx supabase start
+# If left commented, local auth still uses Inbucket (no real email).
+
+[auth]
+site_url = "https://localhost"
+additional_redirect_urls = [
+  "capacitor://localhost",
+  "https://localhost",
+  "http://localhost:5173",
+  "http://localhost:5173/login",
+]
+
+# Required for sign-up confirmation emails. If false, users get a session immediately and NO email is sent.
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+double_confirm_changes = true
+
+[auth.email.template.confirmation]
+subject = "Confirm your ScrollSpark email"
+# Path is resolved from the project root (where you run the CLI), not from this file’s folder.
+content_path = "./supabase/templates/confirmation.html"
+
+# Uncomment to send auth email through Gmail when running locally (requires env var):
+# [auth.email.smtp]
+# enabled = true
+# host = "smtp.gmail.com"
+# port = 465
+# user = "scrollsparkapp@gmail.com"
+# pass = "env(SUPABASE_AUTH_SMTP_PASS)"
+# admin_email = "scrollsparkapp@gmail.com"
+# sender_name = "ScrollSpark"
