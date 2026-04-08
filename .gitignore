@@ -1,0 +1,29 @@
+# Dependencies (install with npm ci / npm install)
+node_modules/
+
+# Production build (regenerate: npm run build; GitHub Actions builds for Pages)
+dist/
+
+# Local env secrets — never commit real keys
+.env
+.env.local
+.env.*.local
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE (optional — uncomment if you don’t want to share editor settings)
+# .vscode/
+# .idea/
+
+# Vite cache
+.vite/
+
+# Test / coverage
+coverage/
+
+# Supabase CLI local state (not migrations)
+supabase/.temp/
+supabase/.branches/
